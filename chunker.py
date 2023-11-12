@@ -1,6 +1,9 @@
 # ================================== CONVERTING TO TEXT =====================================
 import pandas as pd
 
+# CONSTANTS
+MAX_TOKENS = 4000
+
 def text_chunker():
     # open text file
     # may need to edit and fix text file later to make less messy -Pedro
@@ -38,9 +41,17 @@ def text_chunker():
     print()
     print(chunks_improved[111])
 
+    chunk_df = pd.DataFrame(chunks_improved)
+
+    # filters empty text
+    chunk_df = [chunk_df.text.ne('')]
+
+    return chunk_df
+
     # NOTES FOR IMPROVEMENT =================================== -Pedro
     # improve text version of textbook ✖                      |
     #       |-> needs to happen BADLY, almost unreadable      |
     # add overlap incase missing information ✓                |
     #       |-> edit the overlap code to improve if need be   |
+    # filter text thats too long for tokens
     # =========================================================
